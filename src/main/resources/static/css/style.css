@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    margin: 0;
+    padding: 40px;
+}
+
+section.text-block {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: #eee;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.section-left {
+    flex: 1 1 300px;
+}
+
+.section-right {
+    display: flex;
+    flex: 2 1 600px;
+    gap: 20px;
+}
+
+.section-right .col {
+    flex: 1;
+    background-color: #f3f3f3;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.opmerkingen-textarea {
+    width: 100%;
+    min-height: 60px;
+    padding: 8px;
+    resize: vertical;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.kleding-titel {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.kledinggroep {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.kledinggroep label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    text-align: center;
+    flex: 0 1 100px;
+}
+
+.was-item {
+    max-height: 90px;
+    border-radius: 15px;
+    margin-top: 5px;
+}
+
+.instroom-container {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #e3e3e3;
+    border-radius: 10px;
+}
+
+.instroom-titel {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.totaal-label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#lijstItems {
+    list-style-type: none;
+    padding: 0;
+}
+
+.bottom-section {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.no-laundry-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.bevestig-knop {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.bevestig-knop:hover {
+    background-color: #45a049;
+}
+
+.bevestig-text {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .section-header {
+        flex-direction: column;
+    }
+
+    .section-right {
+        flex-direction: column;
+    }
+
+    .kledinggroep {
+        justify-content: center;
+    }
+}
