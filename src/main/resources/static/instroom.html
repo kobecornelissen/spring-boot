@@ -2,28 +2,29 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Instroom</title>
+    <title>instroom</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <section class="text-block">
     <header class="section-header">
-        <div class="section-left">
-            <h4 class="naam-titel">Naam klant</h4>
-            <textarea class="opmerkingen-textarea" placeholder="Opmerkingen:"></textarea>
-        </div>
         <div class="section-right row">
             <div class="col info-box">
+                <small class="naam-titel">Naam klant</small>
+                <textarea class="upper-textarea" placeholder="Naam:"></textarea>
+            </div>
+            <div class="col info-box">
                 <small class="label">WZC</small>
-                <textarea class="opmerkingen-textarea" placeholder="Opmerkingen:"></textarea>
+                <textarea class="upper-textarea" placeholder="WZC:"></textarea>
             </div>
             <div class="col info-box">
                 <small class="label">Kamer</small>
-                <textarea class="opmerkingen-textarea" placeholder="Opmerkingen:"></textarea>
+                <textarea class="upper-textarea" placeholder="Kamer:"></textarea>
             </div>
             <div class="col info-box" id="date-box">
                 <small class="label">Datum</small>
             </div>
+
         </div>
     </header>
 
@@ -85,17 +86,17 @@
 
     <aside class="instroom-container">
         <h4 class="instroom-titel">Instroom</h4>
-        <h3 class="totaal-label">Totaal:</h3>
         <ul id="lijstItems"></ul>
+        <h3 class="totaal-label">Totaal: <span id="totaalAantal">0</span></h3>
     </aside>
 
     <footer class="bottom-section">
         <textarea class="opmerkingen-textarea" placeholder="Opmerkingen:"></textarea>
-        <button id="bevestigKnop" class="bevestig-knop" onclick="document.location='/'">
+        <button id="bevestigKnop" class="bevestig-knop">
             <h4 class="bevestig-text">Bevestig</h4>
         </button>
     </footer>
 </section>
-<script src="waslijst.js" defer></script>
+<script src="js/script.js" defer></script>
 </body>
 </html>

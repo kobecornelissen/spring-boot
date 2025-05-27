@@ -117,12 +117,7 @@ section.text-block {
     gap: 15px;
 }
 
-.no-laundry-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: bold;
-}
+
 
 .bevestig-knop {
     background-color: #4CAF50;
@@ -142,6 +137,62 @@ section.text-block {
     margin: 0;
     font-size: 18px;
 }
+
+/* Zorg dat alle .was-item afbeeldingen eruitzien als knoppen */
+.was-item {
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.was-item.klik-animatie {
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Afbeeldingen als knoppen */
+.was-item {
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Klikanimatie */
+.was-item.klik-animatie {
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Knoppen stijlen */
+.plus {
+    background-color: #28a745; /* groen */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.min {
+    background-color: #dc3545; /* rood */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Optioneel: maak de lijst-items mooi uitgelijnd */
+#lijstItems li {
+    margin-bottom: 8px;
+}
+
 
 /* Responsiveness */
 @media (max-width: 768px) {

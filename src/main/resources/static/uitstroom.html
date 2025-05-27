@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>uitstroom</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<section class="text-block">
+    <header class="section-header">
+        <div class="section-right row">
+            <div class="col info-box">
+                <small class="naam-titel">Naam klant</small>
+                <textarea class="upper-textarea" placeholder="Naam:"></textarea>
+            </div>
+            <div class="col info-box">
+                <small class="label">WZC</small>
+                <textarea class="upper-textarea" placeholder="WZC:"></textarea>
+            </div>
+            <div class="col info-box">
+                <small class="label">Kamer</small>
+                <textarea class="upper-textarea" placeholder="Kamer:"></textarea>
+            </div>
+            <div class="col info-box" id="date-box">
+                <small class="label">Datum</small>
+            </div>
+
+        </div>
+    </header>
+
+    <main class="content-box">
+        <!-- Ondergoed -->
+        <section>
+            <h4 class="kleding-titel">Ondergoed</h4>
+            <div class="kledinggroep">
+                <label>Onderbroek <img src="Img/onderbroek.png" alt="Onderbroek" class="was-item" data-item="Onderbroek" loading="lazy"></label>
+                <label>Panty <img src="Img/panty.webp" alt="Panty" class="was-item" data-item="Panty" loading="lazy"></label>
+                <label>Sokken <img src="Img/kousen.png" alt="Sokken" class="was-item" data-item="Sokken" loading="lazy"></label>
+                <label>Romper <img src="Img/Romper.png" alt="Romper" class="was-item" data-item="Romper" loading="lazy"></label>
+                <label>Stretchbroek <img src="Img/stretchbroek.png" alt="Stretchbroek" class="was-item" data-item="Stretchbroek" loading="lazy"></label>
+                <label>Steunkousen <img src="Img/steunkousen.png" alt="Steunkousen" class="was-item" data-item="Steunkousen" loading="lazy"></label>
+            </div>
+        </section>
+
+        <!-- Textiel -->
+        <section>
+            <h4 class="kleding-titel">Textiel</h4>
+            <div class="kledinggroep">
+                <label>Handdoek <img src="Img/handdoek.png" alt="Handdoek" class="was-item" data-item="Handdoek" loading="lazy"></label>
+                <label>Zakdoek <img src="Img/zakdoeken.png" alt="Zakdoek" class="was-item" data-item="Zakdoek" loading="lazy"></label>
+                <label>Washandje <img src="Img/washandje.png" alt="Washandje" class="was-item" data-item="Washandje" loading="lazy"></label>
+                <label>Tafelkleed <img src="Img/tafelkleed.png" alt="Tafelkleed" class="was-item" data-item="Tafelkleed" loading="lazy"></label>
+                <label>Dekbedovertrek <img src="Img/dekbedovertrek.png" alt="Dekbedovertrek" class="was-item" data-item="Dekbedovertrek" loading="lazy"></label>
+                <label>Laken <img src="Img/laken.png" alt="Laken" class="was-item" data-item="Laken" loading="lazy"></label>
+                <label>Kussensloop <img src="Img/kussens%202.png" alt="Kussensloop" class="was-item" data-item="Kussensloop" loading="lazy"></label>
+                <label>Sjaal <img src="Img/sjaal.png" alt="Sjaal" class="was-item" data-item="Sjaal" loading="lazy"></label>
+            </div>
+        </section>
+
+        <!-- Kleding -->
+        <section>
+            <h4 class="kleding-titel">Kleding</h4>
+            <div class="kledinggroep">
+                <label>Pyjama <img src="Img/pyama%202.png" alt="Pyjama" class="was-item" data-item="Pyjama" loading="lazy"></label>
+                <label>Slaapkleed <img src="Img/nachtkleed.webp" alt="Slaapkleed" class="was-item" data-item="Slaapkleed" loading="lazy"></label>
+                <label>Trui <img src="Img/trui.png" alt="Trui" class="was-item" data-item="Trui" loading="lazy"></label>
+                <label>Vest <img src="Img/trui%20rits.png" alt="Vest" class="was-item" data-item="Vest" loading="lazy"></label>
+                <label>T-shirt <img src="Img/t%20shirt.png" alt="T-shirt" class="was-item" data-item="T-shirt" loading="lazy"></label>
+                <label>Polo <img src="Img/Polo.png" alt="Polo" class="was-item" data-item="Polo" loading="lazy"></label>
+                <label>Hemd / Blouse <img src="Img/hemd.png" alt="Hemd / Blouse" class="was-item" data-item="Hemd" loading="lazy"></label>
+                <label>Broek <img src="Img/broek%20lang%20(1).png" alt="Broek" class="was-item" data-item="Broek" loading="lazy"></label>
+                <label>Rok <img src="Img/rok.png" alt="Rok" class="was-item" data-item="Rok" loading="lazy"></label>
+                <label>Jurk <img src="Img/kleedje.png" alt="Jurk" class="was-item" data-item="Jurk" loading="lazy"></label>
+            </div>
+        </section>
+
+        <!-- Varia -->
+        <section>
+            <h4 class="kleding-titel">Varia</h4>
+            <div class="kledinggroep">
+                <label>Dekbed <img src="Img/dekbed.png" alt="Dekbed" class="was-item" data-item="Dekbed" loading="lazy"></label>
+                <label>Jas <img src="Img/jas%20regen%203.png" alt="Jas" class="was-item" data-item="Jas" loading="lazy"></label>
+            </div>
+        </section>
+    </main>
+
+    <aside class="instroom-container">
+        <h4 class="instroom-titel">Uitstroom</h4>
+        <ul id="lijstItems"></ul>
+        <h3 class="totaal-label">Totaal: <span id="totaalAantal">0</span></h3>
+    </aside>
+
+    <footer class="bottom-section">
+        <textarea class="opmerkingen-textarea" placeholder="Opmerkingen:"></textarea>
+        <button id="bevestig" class="bevestig-knop" onclick="document.location='/'">
+            <h4 class="bevestig-text">Bevestig</h4>
+        </button>
+    </footer>
+</section>
+<script src="js/script.js" defer></script>
+</body>
+</html>

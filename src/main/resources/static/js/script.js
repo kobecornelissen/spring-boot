@@ -1,5 +1,10 @@
 window.addEventListener('DOMContentLoaded', () => {
     const dateBox = document.getElementById('date-box');
+    const lijst = document.getElementById('lijstItems');
+    const wasItems = document.querySelectorAll('.was-item');
+    const bevestigKnop = document.getElementById('bevestigKnop'); // Correcte ID
+
+    // Datum invullen
     if (dateBox) {
         const today = new Date();
         const formatter = new Intl.DateTimeFormat('nl-BE', {
@@ -7,64 +12,119 @@ window.addEventListener('DOMContentLoaded', () => {
             month: '2-digit',
             day: 'numeric'
         });
-        dateBox.textContent = formatter.format(today);
+
+        const datumElement = document.createElement('p');
+        datumElement.textContent = formatter.format(today);
+        dateBox.appendChild(datumElement);
     }
 
-    const clickableImages = document.querySelectorAll('.clickable');
-    const lijst = document.getElementById('lijstItems');
-    const bevestigKnop = document.getElementById('bevestigKnop');
-    const checkbox = document.getElementById('geenWasCheckbox'); // Zorg dat dit ID bestaat in je HTML
+    function updateTotaalAantal() {
+        const lijstItems = document.querySelectorAll('#lijstItems li');
+        let totaal = 0;
 
-    clickableImages.forEach(function (img) {
-        img.addEventListener('click', function () {
-            const bestaandGeenWasItem = document.getElementById('geenWasItem');
+        lijstItems.forEach(li => {
+            const aantal = parseInt(li.querySelector('.aantal').textContent);
+            totaal += isNaN(aantal) ? 0 : aantal;
+        });
 
-            if (checkbox.checked || bestaandGeenWasItem) {
-                checkbox.checked = false;
-                if (bestaandGeenWasItem) {
-                    bestaandGeenWasItem.remove();
-                }
-            }
+        const totaalElement = document.getElementById('totaalAantal');
+        if (totaalElement) {
+            totaalElement.textContent = totaal;
+        }
+    }
 
-            const itemNaam = img.getAttribute('data-item');
-            const bestaandItem = Array.from(lijst.children).find(li => li.dataset.item === itemNaam);
+    wasItems.forEach(img => {
+        img.addEventListener('click', () => {
+            const itemNaam = img.dataset.item;
+            let bestaandItem = [...lijst.children].find(li => li.dataset.item === itemNaam);
 
             if (bestaandItem) {
-                const countSpan = bestaandItem.querySelector('.aantal');
-                countSpan.textContent = parseInt(countSpan.textContent) + 1;
+                const aantalSpan = bestaandItem.querySelector('.aantal');
+                aantalSpan.textContent = parseInt(aantalSpan.textContent) + 1;
             } else {
-                const nieuwItem = document.createElement('li');
-                nieuwItem.dataset.item = itemNaam;
-                nieuwItem.innerHTML = `
+                const nieuwLi = document.createElement('li');
+                nieuwLi.dataset.item = itemNaam;
+                nieuwLi.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span>${itemNaam} (<span class="aantal">1</span>)</span>
-                        <div style="display: flex; justify-content: flex-end; gap: 10px; align-items: center; padding-right: 10px;">
-                            <button class="plus" style="color: white; background-color: green; border: 1.5px solid black; padding: 2px 10px; border-radius: 5px; cursor: pointer;">+</button>
-                            <button class="min" style="color: white; background-color: red; border: 1.5px solid black; padding: 2px 10px; border-radius: 5px; cursor: pointer;">−</button>
+                        <span>${itemNaam}</span>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <button class="plus" style="color: green;">+</button>
+                            <button class="min" style="color: red;">−</button>
+                            <span class="aantal">1</span>
                         </div>
                     </div>
                 `;
-                lijst.appendChild(nieuwItem);
+                lijst.appendChild(nieuwLi);
 
-                const plusBtn = nieuwItem.querySelector('.plus');
-                const minBtn = nieuwItem.querySelector('.min');
-                const countSpan = nieuwItem.querySelector('.aantal');
+                const plusBtn = nieuwLi.querySelector('.plus');
+                const minBtn = nieuwLi.querySelector('.min');
+                const aantalSpan = nieuwLi.querySelector('.aantal');
 
-                plusBtn.addEventListener('click', function () {
-                    countSpan.textContent = parseInt(countSpan.textContent) + 1;
+                plusBtn.addEventListener('click', () => {
+                    aantalSpan.textContent = parseInt(aantalSpan.textContent) + 1;
+                    updateTotaalAantal();
                 });
 
-                minBtn.addEventListener('click', function () {
-                    let huidigeAantal = parseInt(countSpan.textContent);
+                minBtn.addEventListener('click', () => {
+                    const huidigeAantal = parseInt(aantalSpan.textContent);
                     if (huidigeAantal > 1) {
-                        countSpan.textContent = huidigeAantal - 1;
+                        aantalSpan.textContent = huidigeAantal - 1;
                     } else {
-                        nieuwItem.remove();
+                        nieuwLi.remove();
                     }
+                    updateTotaalAantal();
                 });
             }
+
+            updateTotaalAantal();
+
+            img.classList.add('klik-animatie');
+            setTimeout(() => img.classList.remove('klik-animatie'), 150);
         });
     });
-});
 
+    if (bevestigKnop) {
+        bevestigKnop.addEventListener('click', () => {
+            const naam = document.querySelector('textarea[placeholder="Naam:"]').value.trim();
+            const opmerkingen = document.querySelector('.opmerkingen-textarea').value.trim();
+            const lijstItems = document.querySelectorAll('#lijstItems li');
+
+            const vandaag = new Date();
+            const datumFormatter = new Intl.DateTimeFormat('nl-BE', {
+                year: '2-digit',
+                month: '2-digit',
+                day: '2-digit'
+            });
+            const datum = datumFormatter.format(vandaag).replaceAll('/', '-');
+
+            let inhoud = `Naam klant: ${naam}\nDatum: ${datum}\n\nWaslijst:\n`;
+
+            let totaalAantal = 0;
+            lijstItems.forEach(li => {
+                const itemNaam = li.dataset.item;
+                const aantal = parseInt(li.querySelector('.aantal').textContent, 10);
+                totaalAantal += aantal;
+                inhoud += `${itemNaam}: ${aantal}\n`;
+            });
+
+            inhoud += `\nTotaal aantal stuks: ${totaalAantal}\n`;
+            inhoud += `\nOpmerkingen:\n${opmerkingen}\n`;
+
+            const blob = new Blob([inhoud], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${naam || 'onbekend'}_${datum}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            // Optionele redirect na downloaden
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 500);
+        });
+    }
+});
 
